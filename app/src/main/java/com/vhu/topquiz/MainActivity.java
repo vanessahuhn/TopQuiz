@@ -1,5 +1,6 @@
 package com.vhu.topquiz;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import model.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
         mGreetingText = (TextView) findViewById(R.id.activity_main_greeting_txt);
         mNameInput = (EditText) findViewById(R.id.activity_main_name_input);
         mPlayButton = (Button) findViewById(R.id.activity_main_play_btn);
-        mPlayButton.setEnabled(false);
+        mPlayButton.setEnabled(false)
+        mUser.setFirstName(mNameInput.getText().toString());
 
         mNameInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -40,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
         mPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent gameActivity = new Intent(MainActivity.this, GameActivity.class);
+                startActivity(gameActivity);
             }
         });
     }
@@ -48,5 +53,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView mGreetingText;
     private EditText mNameInput;
     private Button mPlayButton;
+    private User mUser;
 
 }
